@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Card Animation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background: #181818;
+    }
+    .container {
+      display: flex;
+      gap: 40px;
+    }
+    .card-3d {
+      width: 220px;
+      background: #222;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      perspective: 1000px;
+      transition: box-shadow 0.4s;
+    }
+    .card-inner {
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      will-change: transform;
+    }
+    .card-3d:hover .card-inner {
+      transform: rotateY(20deg) scale(1.04);
+    }
+    .card-3d img {
+      width: 100%;
+      display: block;
+      border-radius: 0 0 16px 16px;
+    }
+    .card-content {
+      padding: 24px 18px 18px 18px;
+      color: #fff;
+      text-align: center;
+    }
+    .card-content h3 {
+      margin: 0 0 10px 0;
+      letter-spacing: 1.2px;
+      font-size: 19px;
+    }
+    .card-content p {
+      color: #bbb;
+      margin: 0;
+      font-size: 15px;
+    }
+    .card-3d:hover {
+      box-shadow: 0 20px 50px #ff48c3a0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card-3d">
+      <div class="card-inner">
+        <img src="https://i.pinimg.com/1200x/4e/5a/84/4e5a84333e83b41680ad39b6294483b6.jpg" alt="Lion">
+        <div class="card-content">
+          <h3>ABAYA</h3>
+          <p>ABAYA FASHION</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-3d">
+      <div class="card-inner">
+        <img src="https://i.pinimg.com/736x/fc/49/49/fc49491a22892498bfb5c178f5d2971c.jpg" alt="Bear">
+        <div class="card-content">
+          <h3>HIJAB</h3>
+          <p>HIJAB FASHION</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-3d">
+      <div class="card-inner">
+        <img src="https://i.pinimg.com/736x/a4/7d/9a/a47d9af05582df497e2bd4dc8b238b5e.jpg" alt="Peacock">
+        <div class="card-content">
+          <h3>ACCESSORIES</h3>
+          <p>PIN ACCESSORIES</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
