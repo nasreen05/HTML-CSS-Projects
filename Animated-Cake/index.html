@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pure CSS Animated Cake</title>
+<style>
+  /* page */
+  html,body{height:100%;margin:0}
+  body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(#fff 0%, #ffecec 100%);
+    font-family: sans-serif;
+  }
+
+  /* stage */
+  .stage{
+    width:320px;
+    text-align:center;
+    padding:30px 20px 40px;
+  }
+
+  /* plate */
+  .plate{
+    width:260px;
+    height:18px;
+    background:linear-gradient(#e8f0ff,#d6e6ff);
+    border-radius:50%;
+    margin:0 auto 12px;
+    box-shadow:0 6px 14px rgba(0,0,0,.12);
+  }
+
+  /* cake body */
+  .cake{
+    width:260px;
+    margin:0 auto;
+    position:relative;
+  }
+
+  .layer{
+    width:100%;
+    height:56px;
+    background: linear-gradient(#ffefef,#ffd9d9);
+    border-radius:8px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 6px 0 rgba(0,0,0,0.03) inset;
+    position:relative;
+  }
+
+  .layer + .layer { margin-top:10px; }
+
+  /* icing drip (top) */
+  .icing{
+    position:absolute;
+    left:0;right:0;
+    top:-18px;
+    height:28px;
+    background: linear-gradient(#ffffff,#f8f5ff);
+    border-radius:12px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.02) inset;
+    overflow:hidden;
+  }
+  /* create drips with pseudo elements - but using extra spans (basic tags only) */
+  .drip{position:absolute;bottom:0;width:18px;height:28px;background:inherit;border-radius:50%;box-shadow:0 -6px 0 rgba(0,0,0,0.02) inset}
+  .drip.d1{left:28px;transform:translateY(6px)}
+  .drip.d2{left:82px;height:34px;transform:translateY(2px)}
+  .drip.d3{left:148px;height:24px;transform:translateY(8px)}
+  .drip.d4{left:210px;height:30px;transform:translateY(4px)}
+
+  /* candle row */
+  .candles{
+    position: absolute;
+    top:-46px;
+    left:0;right:0;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    pointer-events:none;
+  }
+
+  .candle{
+    width:8px;
+    height:36px;
+    background: linear-gradient(#ffffff,#ffecec);
+    border-radius:2px;
+    border:1px solid rgba(0,0,0,.06);
+    position:relative;
+    box-shadow:0 2px 0 rgba(0,0,0,0.04) inset;
+  }
+  .candle:nth-child(odd){background: linear-gradient(#fff9f0,#fff1e6)}
+
+  /* flame */
+  .flame{
+    position:absolute;
+    left:50%;
+    top:-10px;
+    transform:translateX(-50%);
+    width:12px;
+    height:18px;
+    border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    background: radial-gradient(circle at 40% 30%, #ffd86b 0 30%, #ff7b2d 45%, #ff5b00 70%);
+    filter:blur(.2px);
+    animation: flicker 1s infinite;
+    transform-origin:50% 80%;
+  }
+
+  /* inner glow */
+  .flame::after{
+    content:'';
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:6px;height:8px;border-radius:50%;
+    background: radial-gradient(circle,#fff3c9,#ffcf67 60%);
+    opacity:.9;
+  }
+
+  /* smoke puffs (spans) */
+  .smoke{
+    position:absolute;
+    left:50%;
+    top:-34px;
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
+  .puff{
+    width:8px;height:8px;border-radius:50%;
+    background:rgba(120,120,120,0.14);
+    position:absolute;
+    left:0;
+    bottom:0;
+    animation: puff 3s infinite;
+    opacity:0;
+  }
+  .puff.p1{animation-delay:0s; left:-6px}
+  .puff.p2{animation-delay:0.6s; left:2px}
+  .puff.p3{animation-delay:1.2s; left:10px}
+
+  /* candle wick */
+  .wick{
+    position:absolute;
+    top:-4px;
+    left:50%;
+    transform:translateX(-50%);
+    width:2px;height:6px;background:#2b2b2b;border-radius:1px;
+  }
+
+  /* small decoration dots on cake */
+  .sprinkles{
+    position:absolute;
+    top:10px;left:12px;right:12px;height:10px;
+    display:flex;gap:8px;justify-content:space-between;
+    align-items:center;
+  }
+  .sprinkle{width:6px;height:6px;border-radius:2px;background:#f76c6c}
+
+  /* shadow under plate */
+  .shadow{
+    width:260px;height:12px;background: radial-gradient(ellipse at center, rgba(0,0,0,0.12), rgba(0,0,0,0)); border-radius:50%; margin:10px auto 0;
+  }
+
+  /* animations */
+  @keyframes flicker{
+    0%{transform:translateX(-50%) scaleY(1)}
+    20%{transform:translateX(-50%) scaleY(0.92) translateY(-1px)}
+    40%{transform:translateX(-50%) scaleY(1.06) translateY(0)}
+    60%{transform:translateX(-50%) scaleY(0.95) translateY(-2px)}
+    100%{transform:translateX(-50%) scaleY(1)}
+  }
+
+  @keyframes puff{
+    0%{transform:translateY(0) scale(0.5);opacity:0}
+    30%{opacity:0.5}
+    100%{transform:translateY(-36px) scale(1.6);opacity:0}
+  }
+
+  /* small responsive tweak */
+  @media (max-width:360px){
+    .stage{width:260px;padding:24px 10px 30px}
+    .cake{width:220px}
+    .plate,.shadow{width:220px}
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="plate"></div>
+
+    <div class="cake" aria-hidden="false">
+      <!-- candles -->
+      <div class="candles" aria-hidden="true">
+        <div class="candle">
+          <div class="wick"></div>
+          <div class="flame"></div>
+          <div class="smoke">
+            <span class="puff p1"></span>
+            <span class="puff p2"></span>
+            <span class="puff p3"></span>
+          </div>
+        </div>
+
+        <div class="candle">
+          <div class="wick"></div>
+          <div class="flame" style="animation-delay: .15s"></div>
+          <div class="smoke">
+            <span class="puff p1"></span>
+            <span class="puff p2"></span>
+            <span class="puff p3"></span>
+          </div>
+        </div>
+
+        <div class="candle">
+          <div class="wick"></div>
+          <div class="flame" style="animation-delay: .3s"></div>
+          <div class="smoke">
+            <span class="puff p1"></span>
+            <span class="puff p2"></span>
+            <span class="puff p3"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- icing and drips (top layer) -->
+      <div class="icing" style="z-index:5;left:0;right:0;">
+        <span class="drip d1"></span>
+        <span class="drip d2"></span>
+        <span class="drip d3"></span>
+        <span class="drip d4"></span>
+      </div>
+
+      <!-- top layer -->
+      <div class="layer" style="height:68px;border-radius:10px;">
+        <div class="sprinkles" aria-hidden="true">
+          <span class="sprinkle" style="background:#e01414"></span>
+          <span class="sprinkle" style="background:#f1ba02"></span>
+          <span class="sprinkle" style="background:#25c742"></span>
+          <span class="sprinkle" style="background:#152d4d"></span>
+          <span class="sprinkle" style="background:#8b238b"></span>
+        </div>
+      </div>
+
+      <!-- middle layer -->
+      <div class="layer" style="background:linear-gradient(#ffd9f0,#ffd1ec);"></div>
+
+      <!-- bottom layer -->
+      <div class="layer" style="background:linear-gradient(#ffe7c9,#ffdfb5);height:60px;border-radius:12px"></div>
+    </div>
+
+    <div class="shadow" aria-hidden="true"></div>
+  </div>
+</body>
+</html>
