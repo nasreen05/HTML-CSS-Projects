@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Birthday Cards</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top left, #ff5f9e, transparent 40%), 
+                radial-gradient(circle at bottom right, #a442ff, transparent 40%), 
+                #111;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .container {
+    display: flex;
+    gap: 40px;
+  }
+
+  .card {
+    background: #181818;
+    border-radius: 15px;
+    width: 220px;
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  }
+
+  .card img {
+    width: 100%;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+  }
+
+  .card h3 {
+    margin: 15px 0 5px;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .card p {
+    font-size: 14px;
+    color: #aaa;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 0, 150, 0.5);
+  }
+
+  .card:hover img {
+    transform: scale(1.05);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <img src="https://i.pinimg.com/736x/d5/64/13/d56413c9bd9f7d72af12e0b54c8f3fa3.jpg" alt="FASHION">
+      <h3>FASHION</h3>
+      <p>FASHION </p>
+    </div>
+    <div class="card">
+      <img src="https://i.pinimg.com/736x/f8/a4/18/f8a418fc1dff82471813e228caa93fbb.jpg" alt="Bear">
+      <h3>SHOES</h3>
+      <p>SHOES FASHION</p>
+    </div>
+    <div class="card">
+      <img src="https://i.pinimg.com/1200x/5d/3b/ae/5d3bae65b94e21487dffb76ca36b836e.jpg" alt="Peacock">
+      <h3>MAKEUP</h3>
+      <p>MAKEUP-PRODUCT</p>
+    </div>
+  </div>
+</body>
+</html>
