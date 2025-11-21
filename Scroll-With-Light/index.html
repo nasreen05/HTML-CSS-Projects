@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Scroll with Light — CSS only (4 Colors)</title>
+<style>
+  :root{
+    --txt:#ffffff;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    color:var(--txt);
+    background:#000;
+    line-height:1.4;
+  }
+
+  header{
+    padding:3rem 1.25rem;
+    text-align:center;
+  }
+  header h1{font-size:clamp(1.4rem,3.5vw,2.4rem); letter-spacing:0.02em}
+  header p{opacity:0.85;margin-top:.5rem;font-size:.95rem}
+
+  main{
+    width:min(1100px,94%);
+    margin:2rem auto 6rem;
+  }
+
+  /* Basic section layout */
+  section{
+    position:relative;
+    min-height:80vh;
+    padding:4rem 2rem;
+    margin:2rem 0;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 6px 30px rgba(0,0,0,0.6);
+  }
+
+  /* Four background colors */
+  .red    { background:linear-gradient(180deg, #4b0000, #120000); }
+  .yellow { background:linear-gradient(180deg, #4b3a00, #1a1200); }
+  .green  { background:linear-gradient(180deg, #003b1a, #00150a); }
+  .blue   { background:linear-gradient(180deg, #001c4b, #000814); }
+
+  .card{
+    width:min(900px,96%);
+    background:rgba(255,255,255,0.05);
+    padding:2rem;
+    border-radius:10px;
+    backdrop-filter:blur(6px);
+    text-align:center;
+  }
+  .card h2{font-size:clamp(1.2rem,2.5vw,1.8rem); margin-bottom:.5rem}
+  .card p{opacity:.9; font-size:1rem}
+
+  /* SPOTLIGHT BASE STYLE */
+  .spot{
+    position:sticky;
+    top:40vh;
+    width:60vmin;
+    height:60vmin;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:2;
+    transform:translateY(-10%);
+    mix-blend-mode:screen;
+    transition:transform .4s ease;
+  }
+
+  /* Different color lights */
+  .red .spot{
+    background:radial-gradient(circle at 35% 35%, rgba(255,100,100,1) 0%, rgba(255,0,0,0.5) 25%, rgba(255,0,0,0) 70%);
+  }
+  .yellow .spot{
+    background:radial-gradient(circle at 35% 35%, rgba(255,255,150,1) 0%, rgba(255,255,0,0.5) 25%, rgba(255,255,0,0) 70%);
+  }
+  .green .spot{
+    background:radial-gradient(circle at 35% 35%, rgba(120,255,120,1) 0%, rgba(0,255,0,0.5) 25%, rgba(0,255,0,0) 70%);
+  }
+  .blue .spot{
+    background:radial-gradient(circle at 35% 35%, rgba(150,180,255,1) 0%, rgba(0,100,255,0.5) 25%, rgba(0,100,255,0) 70%);
+  }
+
+  section:hover .spot{
+    transform:translateY(-18%);
+  }
+
+  .vignette{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:radial-gradient(60% 60% at 50% 45%, transparent 40%, rgba(0,0,0,0.5) 100%);
+    z-index:3;
+  }
+
+  .card *{position:relative; z-index:4}
+
+  @media (max-width:560px){
+    .spot{ width:85vmin; height:85vmin; top:36vh }
+    section{ padding:2rem 1rem}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Scroll with Light — CSS Only</h1>
+    <p>Scroll down to see four colored spotlights (Red, Yellow, Green, Blue).</p>
+  </header>
+
+  <main>
+    <section class="red">
+      <div class="spot"></div>
+      <div class="vignette"></div>
+      <div class="card">
+        <h2>Red Light</h2>
+        <p>A warm red spotlight glows as you scroll. Pure CSS, no JavaScript.</p>
+      </div>
+    </section>
+
+    <section class="yellow">
+      <div class="spot"></div>
+      <div class="vignette"></div>
+      <div class="card">
+        <h2>Yellow Light</h2>
+        <p>A bright golden-yellow spotlight illuminates this section.</p>
+      </div>
+    </section>
+
+    <section class="green">
+      <div class="spot"></div>
+      <div class="vignette"></div>
+      <div class="card">
+        <h2>Green Light</h2>
+        <p>A fresh green light shines across the content smoothly as you scroll.</p>
+      </div>
+    </section>
+
+    <section class="blue">
+      <div class="spot"></div>
+      <div class="vignette"></div>
+      <div class="card">
+        <h2>Blue Light</h2>
+        <p>A cool blue spotlight finishes the scroll effect with a calm glow.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
